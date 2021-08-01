@@ -28,9 +28,9 @@ class UserService {
     }
 }
 
-let instance: UserService | null = null;
+// let instance: UserService | null = null;
 
-new UserService();
+// new UserService();
 
-export { UserService };
+export type { UserService };
 export default new UserService();

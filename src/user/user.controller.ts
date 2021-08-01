@@ -1,19 +1,24 @@
 import { NextFunction, Request, Response } from "express";
-import userSerivce, { UserService } from "./user.serivce";
+import userService, { UserService } from "./user.serivice";
 
 class UserController {
     private service: UserService;
 
-    constructor(userSerivce: any) {
-        this.service = userSerivce;
+    constructor(userService: UserService) {
+        this.service = userService;
     }
 
-    async getAdmin(req: Request, res: Response, next: NextFunction) {
+    getAdmin = async (req: Request, res: Response, next: NextFunction) => {
         const email = "adimn";
         const password = "admin";
 
         const [admin] = await this.service.getOne(email, password);
+        console.log(this);
         res.status(200).send(admin);
+    };
+
+    async print() {
+        console.log(this);
     }
 
     async login(req: Request, res: Response, next: NextFunction) {
@@ -31,4 +36,4 @@ class UserController {
     }
 }
 
-export default new UserController(userSerivce);
+export default new UserController(userService);

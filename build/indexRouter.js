@@ -5,7 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const user_router_1 = __importDefault(require("./user/user.router"));
-const indexRouter = express_1.default.Router();
-// indexRouter.use("/money", moneyRouter);
-indexRouter.use("/user", user_router_1.default);
-exports.default = indexRouter;
+const router = express_1.default.Router();
+// router.use("/money", moneyRouter);
+router.use("/user", user_router_1.default);
+router.get("/", (req, res, next) => {
+    res.send("<div style='font-size : 30px'>Hello, world! </div>");
+});
+exports.default = router;

@@ -3,17 +3,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_serivce_1 = __importDefault(require("./user.serivce"));
+const user_serivice_1 = __importDefault(require("./user.serivice"));
 class UserController {
     service;
-    constructor(userSerivce) {
-        this.service = userSerivce;
+    constructor(userService) {
+        this.service = userService;
     }
-    async getAdmin(req, res, next) {
+    getAdmin = async (req, res, next) => {
         const email = "adimn";
         const password = "admin";
         const [admin] = await this.service.getOne(email, password);
+        console.log(this);
         res.status(200).send(admin);
+    };
+    async print() {
+        console.log(this);
     }
     async login(req, res, next) {
         const { email, password } = req.body;
@@ -26,4 +30,4 @@ class UserController {
         return email;
     }
 }
-exports.default = new UserController(user_serivce_1.default);
+exports.default = new UserController(user_serivice_1.default);
