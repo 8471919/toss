@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { NotEmittedStatement } from "typescript";
 import userService, { UserService } from "./user.service";
 
 class UserController {
@@ -19,7 +20,7 @@ class UserController {
         res.status(200).send(admin);
     };
 
-    async login(req: Request, res: Response, next: NextFunction) {
+    async login2(req: Request, res: Response, next: NextFunction) {
         const { email, password } = req.body;
         // const alreadyExist = await this.service.getOne(email, password);
 
@@ -32,6 +33,10 @@ class UserController {
 
         return email;
     }
+
+    login = async (req: Request, res: Response, next: NextFunction) => {};
+    logout = async (req: Request, res: Response, next: NextFunction) => {};
+    join = async (req: Response, res: Response, next: NextFunction) => {};
 }
 
 export default new UserController(userService);
