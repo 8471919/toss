@@ -2,6 +2,7 @@
     "dependencies": {
         "@types/dotenv": "^8.2.0",
         "bcrypt": "^5.0.1",
+        "class-validator": "^0.13.1",
         "cookie-parser": "^1.4.5",
         "dotenv": "^8.6.0",
         "express": "^4.17.1",
@@ -24,7 +25,9 @@
         "predev": "tsc",
         "build": "nodemon --watch src/**/*.ts --exec ts-node src/app.ts",
         "dev": "nodemon --watch src --delay 1 --exec ts-node src/app.ts",
-        "start": "nodemon --watch src --delay 1 --exec ts-node src/app.ts"
+        "start": "nodemon --watch src --delay 1 --exec ts-node src/app.ts",
+        "schema:drop": "ts-node ./node_modules/typeorm/cli.js schema:drop",
+        "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync"
     },
     "author": "",
     "license": "ISC",

@@ -4,11 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const money_router_1 = __importDefault(require("./money/money.router"));
 const user_router_1 = __importDefault(require("./user/user.router"));
-const router = express_1.default.Router();
-// router.use("/money", moneyRouter);
-router.use("/user", user_router_1.default);
-router.get("/", (req, res, next) => {
+const indexRouter = express_1.default.Router();
+indexRouter.use("/money", money_router_1.default);
+indexRouter.use("/user", user_router_1.default);
+indexRouter.get("/", (req, res, next) => {
     res.send("<div style='font-size : 30px'>Hello, world! </div>");
 });
-exports.default = router;
+exports.default = indexRouter;

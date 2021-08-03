@@ -10,7 +10,7 @@ const userRouter = express.Router();
 
 userRouter.post("/login", userController.login);
 userRouter.post("/logout", userController.logout);
-userRouter.post("join", userController.join);
+userRouter.post("/join", userController.join);
 
 userRouter.get("/", userController.getAdmin);
 userRouter.post("/", userController.login2);

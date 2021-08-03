@@ -1,4 +1,6 @@
+import { getRepository } from "typeorm";
 import pool from "../database/config";
+import { Users } from "../output/entities/Users";
 
 class UserService {
     constructor() {
@@ -10,7 +12,15 @@ class UserService {
         // }
     }
 
-    create() {}
+    async create(email: string, password: string) {
+        const userRepository = getRepository<Users>(Users);
+
+        const createdUser = await userRepository.save({
+            email,
+            password,
+        });
+        return createdUser;
+    }
 
     async getOne(email: string, password: string) {
         //     // DB에 접근해서 ID와 패스워드가 일치하는 것을 찾는다.

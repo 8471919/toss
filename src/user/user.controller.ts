@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { NotEmittedStatement } from "typescript";
 import userService, { UserService } from "./user.service";
 
 class UserController {
@@ -36,7 +35,19 @@ class UserController {
 
     login = async (req: Request, res: Response, next: NextFunction) => {};
     logout = async (req: Request, res: Response, next: NextFunction) => {};
-    join = async (req: Response, res: Response, next: NextFunction) => {};
+    join = async (req: Request, res: Response, next: NextFunction) => {
+        const { email, password } = req.body;
+        // if (!email) {
+        //     res.status(400).send("이메일이 없습니다!");
+        // }
+        // if (!password) {
+        //     res.status(400).send("패스워드가 없습니다!");
+        // }
+
+        const createdUser = this.service.create(email, password);
+
+        res.status(201).send(createdUser);
+    };
 }
 
 export default new UserController(userService);
