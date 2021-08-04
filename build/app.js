@@ -11,7 +11,7 @@ const typeorm_1 = require("typeorm");
 const Categories_1 = require("./output/entities/Categories");
 const Moneys_1 = require("./output/entities/Moneys");
 const Payments_1 = require("./output/entities/Payments");
-const Users_1 = require("./output/entities/Users");
+const Users_1 = require("./user/entities/Users");
 const app = express_1.default();
 app.use(express_1.default.static("public"));
 app.use(cookie_parser_1.default());

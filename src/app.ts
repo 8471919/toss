@@ -3,11 +3,11 @@ import cookieParser from "cookie-parser";
 import router from "./indexRouter";
 
 import http from "http";
-import { ConnectionManager, createConnection } from "typeorm";
+import { createConnection } from "typeorm";
 import { Categories } from "./output/entities/Categories";
 import { Moneys } from "./output/entities/Moneys";
 import { Payments } from "./output/entities/Payments";
-import { Users } from "./output/entities/Users";
+import { Users } from "./user/entities/Users";
 
 const app: Application = express();
 

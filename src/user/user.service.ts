@@ -1,6 +1,6 @@
 import { getRepository } from "typeorm";
 import pool from "../database/config";
-import { Users } from "../output/entities/Users";
+import { Users } from "./entities/Users";
 
 class UserService {
     constructor() {

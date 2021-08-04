@@ -25,21 +25,28 @@ class MoneyController {
 
         res.status(200).send(resData);
     };
-    // enterMoney = async (req: Request, res: Response, next: NextFunction) => {
-    //     const price = req.body.price;
-    //     const is_income = req.body.is_income;
-    //     console.log(`price : ${price}, is_income : ${is_income}`);
-    //     if (is_income) {
-    //         this.service.putMoney(price, is_income);
-    //         return;
-    //     }
-    //     this.service.putMoney(price, is_income);
-    // };
-    // lookCategory = async (
-    //     req: Request,
-    //     res: Response,
-    //     next: NextFunction
-    // ) => {};
+    enterMoney = async (req: Request, res: Response, next: NextFunction) => {
+        //userId는 일단 임시로 req.body로 받고 나중에 고치자.
+        const { price, isIncome, categoryId, paymentsId, userId } = req.body;
+
+        console.log(`price : ${price}, isIncome : ${isIncome}`);
+
+        const money = this.service.insertMoney({
+            price,
+            isIncome,
+            categoryId,
+            paymentsId,
+            userId,
+        });
+        console.log("success enter money");
+
+        return res.status(200).send(money);
+    };
+    lookCategory = async (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) => {};
 }
 
 export default new MoneyController(moneyService);

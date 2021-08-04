@@ -13,7 +13,7 @@ exports.Moneys = void 0;
 const typeorm_1 = require("typeorm");
 const Categories_1 = require("./Categories");
 const Payments_1 = require("./Payments");
-const Users_1 = require("./Users");
+const Users_1 = require("../../user/entities/Users");
 let Moneys = class Moneys {
     id;
     date;
@@ -75,7 +75,7 @@ __decorate([
         onDelete: "NO ACTION",
         onUpdate: "NO ACTION",
     }),
-    typeorm_1.JoinColumn([{ name: "USERS_ID", referencedColumnName: "id" }]),
+    typeorm_1.JoinColumn([{ name: "USER_ID", referencedColumnName: "id" }]),
     __metadata("design:type", Users_1.Users)
 ], Moneys.prototype, "users", void 0);
 Moneys = __decorate([

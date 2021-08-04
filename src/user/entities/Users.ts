@@ -5,7 +5,7 @@ import {
     OneToMany,
     PrimaryGeneratedColumn,
 } from "typeorm";
-import { Moneys } from "./Moneys";
+import { Moneys } from "../../output/entities/Moneys";
 
 @Index("EMAIL_UNIQUE", ["email"], { unique: true })
 @Entity("users", { schema: "toss" })

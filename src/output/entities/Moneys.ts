@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 import { Categories } from "./Categories";
 import { Payments } from "./Payments";
-import { Users } from "./Users";
+import { Users } from "../../user/entities/Users";
 
 @Index("fk_MONEYS_CATEGORIES1_idx", ["categoryId"], {})
 @Index("fk_MONEYS_PAYMENTS1_idx", ["paymentsId"], {})

@@ -35,9 +35,27 @@ class MoneyService {
 
     //     return outgoing;
     // };
-    putMoney = async (price: any, is_income: boolean) => {
-        // const sql = {is_income, price,  }
-        const inputMoney = await pool.query(`insert into moneys set ?`);
+
+    //실제 돈과 관련된 로직은 수정이 되면 위험할 수 있으므로, 수정은 따로 만들지 않는다.
+    insertMoney = async (obj: any | { isIncome?: 0 | 1 }) => {
+        const moneyRepository = getRepository<Moneys>(Moneys);
+        const { isIncome, price, categoryId, paymentsId, userId } = obj;
+
+        // 수정시, undefined를 value로 가지는 객체를 제거하는 로직
+        // Object.keys(obj).forEach(
+        //     (el) => obj[el] === undefined && delete obj[el]
+        // );
+
+        const moneyToUpdate = await moneyRepository.findOne(obj.id);
+        //userId는 일단 req.body로 받고, 어떻게 넣어야 할지 고민해보자. 세션? 쿠키?
+        const money = await moneyRepository.save({
+            isIncome,
+            price,
+            categoryId,
+            paymentsId,
+            userId,
+        });
+        return money;
     };
 }
 

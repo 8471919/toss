@@ -12,13 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Payments = void 0;
 const typeorm_1 = require("typeorm");
 const Moneys_1 = require("./Moneys");
+const typeorm_2 = require("typeorm");
 let Payments = class Payments {
     id;
     name;
     moneys;
 };
 __decorate([
-    typeorm_1.Column("int", { primary: true, name: "ID" }),
+    typeorm_2.PrimaryGeneratedColumn({ name: "ID" }),
     __metadata("design:type", Number)
 ], Payments.prototype, "id", void 0);
 __decorate([

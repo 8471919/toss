@@ -5,7 +5,7 @@ const moneyRouter = express.Router();
 
 moneyRouter.get("/:user_id", moneyController.importMoney);
 
-// moneyRouter.post("/money", moneyController.enterMoney);
+moneyRouter.post("/", moneyController.enterMoney);
 // moneyRouter.get("/", moneyController.lookCategory);
 
 export default moneyRouter;
