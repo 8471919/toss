@@ -3,7 +3,7 @@ import pool from "../database/config";
 import { Moneys } from "../output/entities/Moneys";
 
 class MoneyService {
-    private readonly moneyRepository: Repository<Moneys>;
+    // private readonly moneyRepository: Repository<Moneys>;
     constructor() {}
     getMoney = async (user_id: any) => {
         // const income = await pool.query(
@@ -46,7 +46,7 @@ class MoneyService {
         //     (el) => obj[el] === undefined && delete obj[el]
         // );
 
-        const moneyToUpdate = await moneyRepository.findOne(obj.id);
+        // const moneyToUpdate = await moneyRepository.findOne(obj.id);
         //userId는 일단 req.body로 받고, 어떻게 넣어야 할지 고민해보자. 세션? 쿠키?
         const money = await moneyRepository.save({
             isIncome,
@@ -54,6 +54,17 @@ class MoneyService {
             categoryId,
             paymentsId,
             userId,
+        });
+        return money;
+    };
+
+    getCategory = async (userId?: string, categoryId?: string) => {
+        const moneyRepository = getRepository<Moneys>(Moneys);
+        const money = await moneyRepository.find({
+            where: {
+                userId,
+                categoryId,
+            },
         });
         return money;
     };

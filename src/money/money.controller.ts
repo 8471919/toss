@@ -31,7 +31,7 @@ class MoneyController {
 
         console.log(`price : ${price}, isIncome : ${isIncome}`);
 
-        const money = this.service.insertMoney({
+        const money = await this.service.insertMoney({
             price,
             isIncome,
             categoryId,
@@ -42,11 +42,15 @@ class MoneyController {
 
         return res.status(200).send(money);
     };
-    lookCategory = async (
-        req: Request,
-        res: Response,
-        next: NextFunction
-    ) => {};
+    lookCategory = async (req: Request, res: Response, next: NextFunction) => {
+        //여기서도 userId를 일단 req.query로 받아서 사용하자.
+        //Get 요청을 보낼시, /money?id=5&categoryId=1 이런식으로 보내야 한다.
+        const { categoryId, userId }: any = req.query;
+
+        const category = await this.service.getCategory(userId, categoryId);
+        console.log(category);
+        return res.status(200).send(category);
+    };
 }
 
 export default new MoneyController(moneyService);
