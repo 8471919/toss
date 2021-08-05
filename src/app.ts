@@ -9,12 +9,20 @@ import { Moneys } from "./output/entities/Moneys";
 import { Payments } from "./output/entities/Payments";
 import { Users } from "./user/entities/Users";
 
+import passport from "passport";
+import passportConfig from "./passport/local";
+import jwtPassportConfig from "./passport/jwt";
+
 const app: Application = express();
 
 app.use(express.static("public"));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(passport.initialize());
+passportConfig();
+jwtPassportConfig();
 
 app.use(router);
 
@@ -38,6 +46,6 @@ app.use(router);
 
 const server = http.createServer(app);
 
-server.listen(3000, () => {
+server.listen(3100, () => {
     console.log("start! express server on port 3000");
 });

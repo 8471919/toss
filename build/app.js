@@ -12,11 +12,15 @@ const Categories_1 = require("./output/entities/Categories");
 const Moneys_1 = require("./output/entities/Moneys");
 const Payments_1 = require("./output/entities/Payments");
 const Users_1 = require("./user/entities/Users");
+const passport_1 = __importDefault(require("passport"));
+const local_1 = __importDefault(require("./passport/local"));
 const app = express_1.default();
 app.use(express_1.default.static("public"));
 app.use(cookie_parser_1.default());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
+app.use(passport_1.default.initialize());
+local_1.default();
 app.use(indexRouter_1.default);
 (async function () {
     typeorm_1.createConnection({
@@ -36,6 +40,6 @@ app.use(indexRouter_1.default);
         .catch((error) => console.error(error));
 })();
 const server = http_1.default.createServer(app);
-server.listen(3000, () => {
+server.listen(3100, () => {
     console.log("start! express server on port 3000");
 });

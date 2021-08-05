@@ -18,6 +18,10 @@ class UserController {
         const [admin] = await this.service.getOne(email, password);
         res.status(200).send(admin);
     };
+    getAll = async (req, res, next) => {
+        const users = await this.service.getAll();
+        res.send(users);
+    };
     async login2(req, res, next) {
         const { email, password } = req.body;
         // const alreadyExist = await this.service.getOne(email, password);
@@ -28,7 +32,12 @@ class UserController {
         // res.status(200).send(userEmail);
         return email;
     }
-    login = async (req, res, next) => { };
+    login = async (req, res, next) => {
+        const user = req.user;
+        console.log(user);
+        res.send(200);
+        // const token = jwt.sign(user, "secret");
+    };
     logout = async (req, res, next) => { };
     join = async (req, res, next) => {
         const { email, password } = req.body;

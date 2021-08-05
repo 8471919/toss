@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import userService, { UserService } from "./user.service";
+import jwt from "jsonwebtoken";
 
 class UserController {
     private service: UserService;
@@ -19,6 +20,11 @@ class UserController {
         res.status(200).send(admin);
     };
 
+    getAll = async (req: Request, res: Response, next: NextFunction) => {
+        const users = await this.service.getAll();
+        res.send(users);
+    };
+
     async login2(req: Request, res: Response, next: NextFunction) {
         const { email, password } = req.body;
         // const alreadyExist = await this.service.getOne(email, password);
@@ -33,7 +39,18 @@ class UserController {
         return email;
     }
 
-    login = async (req: Request, res: Response, next: NextFunction) => {};
+    login = async (req: Request, res: Response, next: NextFunction) => {
+        const user: any = req.user;
+
+        if (user) {
+            const email = user.email;
+            const curTime = Date.now();
+            const token = jwt.sign({ email: email }, "secret");
+            res.status(200).send(token);
+        }
+        res.send(400);
+    };
+
     logout = async (req: Request, res: Response, next: NextFunction) => {};
     join = async (req: Request, res: Response, next: NextFunction) => {
         const { email, password } = req.body;
@@ -51,3 +68,12 @@ class UserController {
 }
 
 export default new UserController(userService);
+
+// 유니온
+// function add (a : number | string) {
+//     if(typeof a === 'number') {
+//         return a + a;
+//     } else if (typeof a === 'string') {
+//         return a + a;
+//     }
+// }
