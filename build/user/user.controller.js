@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_service_1 = __importDefault(require("./user.service"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 class UserController {
     service;
     constructor(userService) {
@@ -34,9 +35,13 @@ class UserController {
     }
     login = async (req, res, next) => {
         const user = req.user;
-        console.log(user);
-        res.send(200);
-        // const token = jwt.sign(user, "secret");
+        if (user) {
+            const email = user.email;
+            // const curTime = Date.now();
+            const token = jsonwebtoken_1.default.sign({ email: email, userId: user.id }, "secret");
+            res.status(200).send(token);
+        }
+        res.send(400);
     };
     logout = async (req, res, next) => { };
     join = async (req, res, next) => {
@@ -52,3 +57,11 @@ class UserController {
     };
 }
 exports.default = new UserController(user_service_1.default);
+// 유니온
+// function add (a : number | string) {
+//     if(typeof a === 'number') {
+//         return a + a;
+//     } else if (typeof a === 'string') {
+//         return a + a;
+//     }
+// }

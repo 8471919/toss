@@ -14,6 +14,7 @@ const Payments_1 = require("./output/entities/Payments");
 const Users_1 = require("./user/entities/Users");
 const passport_1 = __importDefault(require("passport"));
 const local_1 = __importDefault(require("./passport/local"));
+const jwt_1 = __importDefault(require("./passport/jwt"));
 const app = express_1.default();
 app.use(express_1.default.static("public"));
 app.use(cookie_parser_1.default());
@@ -21,6 +22,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(passport_1.default.initialize());
 local_1.default();
+jwt_1.default();
 app.use(indexRouter_1.default);
 (async function () {
     typeorm_1.createConnection({

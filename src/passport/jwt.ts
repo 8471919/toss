@@ -47,6 +47,8 @@ const jwtPassportConfig = () => {
             //     }
             // });
             console.log("payload : ", jwt_payload);
+            console.log("payload : ", jwt_payload.email);
+
             const user = userService.getUserByEmail(jwt_payload.email);
             if (user) {
                 return done(null, user);
