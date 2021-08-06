@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const indexRouter_1 = __importDefault(require("./indexRouter"));
 const http_1 = __importDefault(require("http"));
+//TypeORMS
 const typeorm_1 = require("typeorm");
 const Categories_1 = require("./output/entities/Categories");
 const Moneys_1 = require("./output/entities/Moneys");
@@ -15,8 +16,9 @@ const Users_1 = require("./user/entities/Users");
 const passport_1 = __importDefault(require("passport"));
 const local_1 = __importDefault(require("./passport/local"));
 const jwt_1 = __importDefault(require("./passport/jwt"));
+const path_1 = __importDefault(require("path"));
 const app = express_1.default();
-app.use(express_1.default.static("public"));
+app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
 app.use(cookie_parser_1.default());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
@@ -42,6 +44,7 @@ app.use(indexRouter_1.default);
         .catch((error) => console.error(error));
 })();
 const server = http_1.default.createServer(app);
-server.listen(3100, () => {
-    console.log("start! express server on port 3000");
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
+    console.log(`start! express server on port ${port}`);
 });

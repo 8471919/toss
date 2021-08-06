@@ -37,8 +37,9 @@ class UserController {
         const user = req.user;
         if (user) {
             const email = user.email;
+            const userId = user.id;
             // const curTime = Date.now();
-            const token = jsonwebtoken_1.default.sign({ email: email, userId: user.id }, "secret");
+            const token = jsonwebtoken_1.default.sign({ email, userId }, "secret");
             res.status(200).send(token);
         }
         res.send(400);

@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import router from "./indexRouter";
 
 import http from "http";
+//TypeORMS
 import { createConnection } from "typeorm";
 import { Categories } from "./output/entities/Categories";
 import { Moneys } from "./output/entities/Moneys";
@@ -12,10 +13,11 @@ import { Users } from "./user/entities/Users";
 import passport from "passport";
 import passportConfig from "./passport/local";
 import jwtPassportConfig from "./passport/jwt";
+import path from "path";
 
 const app: Application = express();
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -45,7 +47,8 @@ app.use(router);
 })();
 
 const server = http.createServer(app);
+const port = process.env.PORT || 3000;
 
-server.listen(3100, () => {
-    console.log("start! express server on port 3000");
+server.listen(port, () => {
+    console.log(`start! express server on port ${port}`);
 });
