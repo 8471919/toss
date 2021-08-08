@@ -1,28 +1,90 @@
+// function* getChildNodes(parent) {
+//     for (const a of parent.childNodes) {
+//         yield a;
+
+//         for (const b of getChildNodes(a)) {
+//             yield b;
+//         }
+//     }
+// }
+
 class Header {
     constructor() {
-        const body = document.body;
-        const header = document.createElement("div");
-        header.style.display = "flex";
-        const title = document.createElement("div");
-        title.innerHTML = `<a href="/">Toss</a>`;
+        this.loginToggleButton = document.getElementById("loginToggle");
 
-        const selector = document.createElement("div");
-        selector.style.display = "flex";
-        selector.innerHTML = `<div> Calender </div> 
-            <div> List </div> 
-            <div> Graph </div>`;
-        const userState = document.createElement("div");
-        userState.style.display = "flex";
-        let state = "login";
-        userState.innerHTML = `<div> ${state} </div>`;
+        this.setToggleStatus();
+    }
 
-        header.appendChild(title);
-        header.appendChild(selector);
-        header.appendChild(userState);
-        body.appendChild(header);
+    async setToggleStatus() {
+        if (this.getCookie()) {
+            // 로그인된 것
+            this.loginToggleButton.textContent = "logout";
+            this.loginToggleButton.onclick = () => {
+                //auth=3으로 되어있던 쿠키값이 auth=null로 바뀐다. 덮어쓰기된다.
+                document.cookie = "auth=null";
+                //새로고침
+                window.location.reload();
+            };
+            return true;
+        }
+
+        // 로그인이 아직 되지 않은 것
+        this.loginToggleButton.textContent = "login";
+        this.loginToggleButton.onclick = () => {
+            //이벤트를 테스트하기 위해 쿠키를 준다.
+            //원래 있던 naver=3 과같은 쿠키 뒤에 붙는다.
+            document.cookie = "auth=3";
+            const modalBackground = document.getElementById("modalBackground");
+            modalBackground.style.zIndex = 5;
+            modalBackground.style.backgroundColor = "black";
+            modalBackground.style.opacity = "0.7";
+
+            const modalOuter = document.getElementById("modalOuter");
+            modalOuter.style.zIndex = 6;
+            modalOuter.style.opacity = 1;
+
+            modalBackground.onclick = () => {
+                modalBackground.style.zIndex = -10;
+                modalBackground.style.opacity = 0;
+                modalOuter.style.zIndex = -5;
+                modalOuter.style.opacity = 0;
+            };
+
+            // window.onclick = (event) => {
+            //     if (event.target === this.loginToggleButton) {
+            //         return;
+            //     }
+
+            //     const cur = document.getElementById("modalOuter");
+            //     // cur에 대한 체크도 해주어야 한다.
+            //     if (event.target === cur) {
+            //         return;
+            //     }
+            //     for (const child of getChildNodes(cur)) {
+            //         if (event.target === child) {
+            //             return;
+            //         }
+            //     }
+
+            //     modalBackground.style.zIndex = -10;
+            //     modalBackground.style.backgroundColor = "transparent";
+            //     modalBackground.style.opacity = "0";
+            // };
+        };
+    }
+
+    getCookie() {
+        // google=3; naver=5; auth=tokenValue;
+        const cookie = document.cookie.split("; ").map((el) => {
+            const [key, token] = el.split("=");
+            return { key, token };
+        });
+
+        const [authCookie] = cookie.filter((el) => el.key === "auth");
+
+        if (authCookie && authCookie.token === "null") {
+            return false;
+        }
+        return true;
     }
 }
-
-window.onload = () => {
-    new Header();
-};

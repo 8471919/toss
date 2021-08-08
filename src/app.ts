@@ -18,6 +18,7 @@ import path from "path";
 const app: Application = express();
 
 app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "..", "build", "public")));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

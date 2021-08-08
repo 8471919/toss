@@ -19,6 +19,7 @@ const jwt_1 = __importDefault(require("./passport/jwt"));
 const path_1 = __importDefault(require("path"));
 const app = express_1.default();
 app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "..", "build", "public")));
 app.use(cookie_parser_1.default());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));

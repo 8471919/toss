@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="/stylesheets/main/header.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="/stylesheets/main/modal.css"
+        />
         <title>Toss!</title>
+        <script src="./javascripts/main/header.js"></script>
+        <script src="./javascripts/index.js"></script>
     </head>
     <body>
-        제발 나와라
         <header>
-            <script src="javascripts/main/header.js"></script>
+            <div style="display: flex">
+                <div style="width: 15%; text-align: center">
+                    <a href="/">Toss</a>
+                </div>
+                <div style="display: flex; width: 65%">
+                    <div class="inSelector">Calender</div>
+                    <div class="inSelector">List</div>
+                    <div class="inSelector">Graph</div>
+                </div>
+                <div
+                    id="userState"
+                    style="display: flex; width: 20%; text-align: center"
+                >
+                    <button id="loginToggle"></button>
+                </div>
+            </div>
         </header>
-        제발 부탁이야
+
+        <div id="modalBackground"></div>
+
+        <div id="modalOuter">
+            <div id="modalInner"></div>
+        </div>
     </body>
 </html>
