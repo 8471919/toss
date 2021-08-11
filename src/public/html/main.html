@@ -33,24 +33,32 @@
                     <button id="loginToggle"></button>
                 </div>
             </div>
+            <div id="modalBackground"></div>
+
+            <section>
+                <div id="modalOuter">
+                    <div id="modalInner">
+                        <p class="loginText">
+                            <label for="idpw"> ID </label>
+                            <input class="idpw" type="text" name="id" />
+                        </p>
+                        <p class="loginText">
+                            <label for="idpw"> Password </label>
+                            <input
+                                class="idpw"
+                                type="password"
+                                name="password"
+                            />
+                        </p>
+                        <button style="position: absolute; right: 0">
+                            login
+                        </button>
+                    </div>
+                </div>
+            </section>
         </header>
 
-        <div id="modalBackground"></div>
-
-        <div id="modalOuter">
-            <div id="modalInner">
-                <p class="loginText">
-                    ID<input class="idpw" type="text" name="id" />
-                </p>
-                <p class="loginText">
-                    Password<input
-                        class="idpw"
-                        type="password"
-                        name="password"
-                    />
-                </p>
-                <button style="position: absolute; right: 0">login</button>
-            </div>
-        </div>
+        <main></main>
+        <footer></footer>
     </body>
 </html>

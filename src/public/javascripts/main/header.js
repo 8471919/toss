@@ -35,19 +35,14 @@ class Header {
             //원래 있던 naver=3 과같은 쿠키 뒤에 붙는다.
             document.cookie = "auth=3";
             const modalBackground = document.getElementById("modalBackground");
-            modalBackground.style.zIndex = 5;
-            modalBackground.style.backgroundColor = "black";
-            modalBackground.style.opacity = "0.7";
+            changeZIndexAndOpacity(modalBackground, 5, 0.7);
 
             const modalOuter = document.getElementById("modalOuter");
-            modalOuter.style.zIndex = 6;
-            modalOuter.style.opacity = 1;
+            changeZIndexAndOpacity(modalOuter, 6, 1);
 
             modalBackground.onclick = () => {
-                modalBackground.style.zIndex = -10;
-                modalBackground.style.opacity = 0;
-                modalOuter.style.zIndex = -5;
-                modalOuter.style.opacity = 0;
+                changeZIndexAndOpacity(modalBackground, -10, 0);
+                changeZIndexAndOpacity(modalOuter, -5, 0);
             };
 
             // window.onclick = (event) => {
@@ -88,3 +83,8 @@ class Header {
         return true;
     }
 }
+
+const changeZIndexAndOpacity = (el, zIndex, opacity) => {
+    el.style.zIndex = zIndex;
+    el.style.opacity = opacity;
+};
