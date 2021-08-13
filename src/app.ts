@@ -6,7 +6,6 @@ import http from "http";
 //TypeORMS
 import { createConnection } from "typeorm";
 import { Categories } from "./output/entities/Categories";
-import { Moneys } from "./output/entities/Moneys";
 import { Payments } from "./output/entities/Payments";
 import { Users } from "./user/entities/Users";
 
@@ -14,6 +13,7 @@ import passport from "passport";
 import passportConfig from "./passport/local";
 import jwtPassportConfig from "./passport/jwt";
 import path from "path";
+import { Moneys } from "./money/entities/Moneys";
 
 const app: Application = express();
 

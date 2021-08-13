@@ -11,12 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Categories = void 0;
 const typeorm_1 = require("typeorm");
-const Moneys_1 = require("./Moneys");
+const Moneys_1 = require("../../money/entities/Moneys");
 const typeorm_2 = require("typeorm");
 let Categories = class Categories {
     id;
     name;
-    moneys;
+    money;
 };
 __decorate([
     typeorm_2.PrimaryGeneratedColumn({ name: "ID" }),
@@ -29,7 +29,7 @@ __decorate([
 __decorate([
     typeorm_1.OneToMany(() => Moneys_1.Moneys, (moneys) => moneys.category),
     __metadata("design:type", Array)
-], Categories.prototype, "moneys", void 0);
+], Categories.prototype, "money", void 0);
 Categories = __decorate([
     typeorm_1.Entity("categories", { schema: "toss" })
 ], Categories);

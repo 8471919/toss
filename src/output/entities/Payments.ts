@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany } from "typeorm";
-import { Moneys } from "./Moneys";
+import { Moneys } from "../../money/entities/Moneys";
 import { PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("payments", { schema: "toss" })
@@ -10,6 +10,6 @@ export class Payments {
     @Column("varchar", { name: "NAME", length: 20 })
     name: string;
 
-    @OneToMany(() => Moneys, (moneys) => moneys.payments)
-    moneys: Moneys[];
+    @OneToMany(() => Moneys, (moneys) => moneys.payment)
+    money: Moneys[];
 }

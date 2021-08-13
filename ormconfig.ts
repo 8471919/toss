@@ -6,11 +6,9 @@ import { Users } from "./src/user/entities/Users";
 import { Moneys } from "./src/output/entities/Moneys";
 import { Payments } from "./src/output/entities/Payments";
 
-console.log(new Moneys());
-
 dotenv.config();
 
-const ORMConfig: ConnectionOptions = {
+const ORMConfig: any = {
     type: "mysql",
     host: process.env.DEV_HOST,
     port: Number(process.env.DEV_PORT),
@@ -18,6 +16,7 @@ const ORMConfig: ConnectionOptions = {
     password: process.env.DEV_PASSWORD,
     database: process.env.DEV_DATABASE,
     entities: [Categories, Users, Moneys, Payments],
+    seeds: ["src/database/seeding{.ts,.js}"],
     synchronize: false,
     charset: "utf8mb4",
     logging: true,

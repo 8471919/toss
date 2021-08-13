@@ -7,7 +7,9 @@ const express_1 = __importDefault(require("express"));
 const passport_1 = __importDefault(require("passport"));
 const money_controller_1 = __importDefault(require("./money.controller"));
 const moneyRouter = express_1.default.Router();
+moneyRouter.get("/", money_controller_1.default.getAllMoney);
 moneyRouter.get("/calender", passport_1.default.authenticate("jwt", { session: false }), money_controller_1.default.importMoney);
+moneyRouter.get("/list", money_controller_1.default.importMoney);
 moneyRouter.post("/", money_controller_1.default.enterMoney);
 moneyRouter.get("/graph", passport_1.default.authenticate("jwt", {
     session: false,

@@ -6,12 +6,12 @@ import {
     ManyToOne,
     PrimaryGeneratedColumn,
 } from "typeorm";
-import { Categories } from "./Categories";
-import { Payments } from "./Payments";
+import { Categories } from "../../output/entities/Categories";
+import { Payments } from "../../output/entities/Payments";
 import { Users } from "../../user/entities/Users";
 
 @Index("fk_MONEYS_CATEGORIES1_idx", ["categoryId"], {})
-@Index("fk_MONEYS_PAYMENTS1_idx", ["paymentsId"], {})
+@Index("fk_MONEYS_PAYMENTS1_idx", ["paymentId"], {})
 @Index("fk_MONEYS_USERS1_idx", ["userId"], {})
 @Entity("moneys", { schema: "toss" })
 export class Moneys {
@@ -31,29 +31,29 @@ export class Moneys {
     categoryId: number;
 
     @Column("int", { name: "PAYMENTS_ID" })
-    paymentsId: number;
+    paymentId: number;
 
     @Column("int", { name: "USER_ID" })
     userId: number;
 
-    @ManyToOne(() => Categories, (categories) => categories.moneys, {
+    @ManyToOne(() => Categories, (categories) => categories.money, {
         onDelete: "NO ACTION",
         onUpdate: "NO ACTION",
     })
     @JoinColumn([{ name: "CATEGORY_ID", referencedColumnName: "id" }])
     category: Categories;
 
-    @ManyToOne(() => Payments, (payments) => payments.moneys, {
+    @ManyToOne(() => Payments, (payments) => payments.money, {
         onDelete: "NO ACTION",
         onUpdate: "NO ACTION",
     })
     @JoinColumn([{ name: "PAYMENTS_ID", referencedColumnName: "id" }])
-    payments: Payments;
+    payment: Payments;
 
-    @ManyToOne(() => Users, (users) => users.moneys, {
+    @ManyToOne(() => Users, (users) => users.money, {
         onDelete: "NO ACTION",
         onUpdate: "NO ACTION",
     })
     @JoinColumn([{ name: "USER_ID", referencedColumnName: "id" }])
-    users: Users;
+    user: Users;
 }

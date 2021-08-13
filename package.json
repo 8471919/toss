@@ -15,6 +15,7 @@
         "passport-local": "^1.0.0",
         "ts-node": "^10.1.0",
         "typeorm": "^0.2.35",
+        "typeorm-seeding": "^1.6.1",
         "typescript": "^4.3.5"
     },
     "name": "toss",
@@ -34,7 +35,9 @@
         "dev": "nodemon --watch src --delay 1 --exec ts-node src/app.ts",
         "start": "nodemon --watch src --delay 1 --exec ts-node src/app.ts",
         "schema:drop": "ts-node ./node_modules/typeorm/cli.js schema:drop",
-        "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync"
+        "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync",
+        "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config",
+        "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed"
     },
     "author": "",
     "license": "ISC",

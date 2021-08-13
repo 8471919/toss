@@ -1,0 +1,9 @@
+main {
+    margin: 50px 100px;
+    height: 70vh;
+}
+
+#statistics {
+    height: 30%;
+    background-color: black;
+}

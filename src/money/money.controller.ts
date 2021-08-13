@@ -7,7 +7,14 @@ class MoneyController {
     constructor(moneyService: MoneyService) {
         this.service = moneyService;
     }
+    getAllMoney = async (req: Request, res: Response, next: NextFunction) => {
+        const money = await this.service.getAllMoney();
+        return res.status(200).json({ money });
+    };
+
     importMoney = async (req: Request, res: Response, next: NextFunction) => {
+        req.user = { id: 1 };
+
         if (req.user) {
             const user: any = await req.user;
             const userId = user.id;
@@ -30,6 +37,7 @@ class MoneyController {
         // const income = money.filter((el) => el.isIncome === 1);
         // const outgoing = money.filter((el) => el.isIncome === 0);
     };
+
     enterMoney = async (req: Request, res: Response, next: NextFunction) => {
         const { price, isIncome, categoryId, paymentsId, userId } = req.body;
 
@@ -46,6 +54,7 @@ class MoneyController {
 
         return res.status(200).send(money);
     };
+
     lookCategory = async (req: Request, res: Response, next: NextFunction) => {
         const { categoryId }: any = req.query;
 

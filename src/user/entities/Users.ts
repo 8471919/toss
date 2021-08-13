@@ -5,7 +5,7 @@ import {
     OneToMany,
     PrimaryGeneratedColumn,
 } from "typeorm";
-import { Moneys } from "../../output/entities/Moneys";
+import { Moneys } from "../../money/entities/Moneys";
 
 @Index("EMAIL_UNIQUE", ["email"], { unique: true })
 @Entity("users", { schema: "toss" })
@@ -24,6 +24,6 @@ export class Users {
     @Column("varchar", { name: "PASSWORD", length: 100, nullable: false })
     password: string;
 
-    @OneToMany(() => Moneys, (moneys) => moneys.users)
-    moneys: Moneys[];
+    @OneToMany(() => Moneys, (moneys) => moneys.user)
+    money: Moneys[];
 }

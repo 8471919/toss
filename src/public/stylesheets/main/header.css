@@ -1,3 +1,9 @@
+body {
+    margin: 0px;
+}
+header {
+    height: 5vh;
+}
 .inSelector {
     width: 33%;
     text-align: center;

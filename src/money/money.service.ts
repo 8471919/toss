@@ -1,45 +1,40 @@
 import { getConnection, getRepository, Repository } from "typeorm";
 import pool from "../database/config";
-import { Moneys } from "../output/entities/Moneys";
+import { Moneys } from "./entities/Moneys";
 
 class MoneyService {
     // private readonly moneyRepository: Repository<Moneys>;
     constructor() {}
-    getMoney = async (user_id: any) => {
-        // const income = await pool.query(
-        //     `select * from moneys where users_id = ${user_id} and is_income = 1`
-        // );
 
-        // return income;
-
-        // console.log("here");
-        // const connection = getConnection();
-        // console.log(connection);
-        // console.log("ended");
-
-        // return [1];
-
+    getAllMoney = async () => {
         const moneyRepository = getRepository<Moneys>(Moneys);
-        const money = await moneyRepository.find({
-            where: {
-                userId: user_id,
-            },
-        });
+        const money = await moneyRepository.find();
 
         return money;
     };
-    // getOutgoing = async (user_id: any) => {
-    //     const outgoing = await pool.query(
-    //         `select * from moneys where users_id = ${user_id} and is_income = 0`
-    //     );
 
-    //     return outgoing;
-    // };
+    getMoney = async (user_id: any) => {
+        const moneyRepository = getRepository<Moneys>(Moneys);
+        const money = await moneyRepository
+            .createQueryBuilder("M")
+            .select([
+                "M.id as id",
+                "P.name as paymentName",
+                "C.name as categoryName",
+                "M.isIncome as isIncome",
+            ])
+            .innerJoin("M.category", "C")
+            .innerJoin("M.payment", "P")
+            .where(`M.userId = ${user_id}`)
+            .getRawMany();
+
+        return money;
+    };
 
     //실제 돈과 관련된 로직은 수정이 되면 위험할 수 있으므로, 수정은 따로 만들지 않는다.
     insertMoney = async (obj: any | { isIncome?: 0 | 1 }) => {
         const moneyRepository = getRepository<Moneys>(Moneys);
-        const { isIncome, price, categoryId, paymentsId, userId } = obj;
+        const { isIncome, price, categoryId, paymentId, userId } = obj;
 
         // 수정시, undefined를 value로 가지는 객체를 제거하는 로직
         // Object.keys(obj).forEach(
@@ -52,7 +47,7 @@ class MoneyService {
             isIncome,
             price,
             categoryId,
-            paymentsId,
+            paymentId,
             userId,
         });
         return money;
