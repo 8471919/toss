@@ -20,14 +20,12 @@ class MoneyController {
             const userId = user.id;
             const money = await this.service.getMoney(userId);
 
-            const resData: any = { income: [], outgoing: [] };
-
+            const resData: any = new Array(12).fill(0).map((el) => (el = []));
+            console.log(resData);
             money.forEach((el) => {
-                if (el.isIncome) {
-                    resData.income.push(el);
-                } else {
-                    resData.outgoing.push(el);
-                }
+                const date = new Date(el.date);
+                const month = date.getUTCMonth();
+                resData[month].push(el);
             });
 
             return res.status(200).send(resData);
