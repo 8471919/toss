@@ -18,11 +18,13 @@ class MoneyService {
         const money = await moneyRepository
             .createQueryBuilder("M")
             .select([
-                "M.id as id",
+                "M.date as date",
+                "M.price as price",
                 "P.name as paymentName",
                 "C.name as categoryName",
                 "M.isIncome as isIncome",
             ])
+            .orderBy("date")
             .innerJoin("M.category", "C")
             .innerJoin("M.payment", "P")
             .where(`M.userId = ${user_id}`)
