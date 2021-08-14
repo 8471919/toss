@@ -3,8 +3,8 @@ import { ConnectionOptions } from "typeorm";
 
 import { Categories } from "./src/output/entities/Categories";
 import { Users } from "./src/user/entities/Users";
-import { Moneys } from "./src/output/entities/Moneys";
 import { Payments } from "./src/output/entities/Payments";
+import { Moneys } from "./src/money/entities/Moneys";
 
 dotenv.config();
 

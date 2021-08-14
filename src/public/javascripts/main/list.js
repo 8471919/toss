@@ -1,7 +1,7 @@
 class List {
     constructor() {
-        this.incomes = [];
-        this.outgoings = [];
+        this.statistics = document.getElementById("statistics");
+
         this.getMoneyData();
 
         this.render();
@@ -11,10 +11,28 @@ class List {
         // fetch, axios
         // this.incomes = [data];
         // this.outgoings = [data];
+
+        const resData = await fetch("/money/list", {
+            headers: { "Content-Type": "application/json" },
+            method: "GET",
+        }).then((res) => console.log(res));
+
+        const result = await resData.json();
+
+        while (result.income.length) {
+            const data = result.income.pop();
+            const date = new Date(data.date);
+            const year = date.getUTCFullYear;
+            const month = date.getUTCMonth;
+            const day = date.getUTCDay;
+            const hours = date.getUTCHours;
+            const minutes = date.getUTCMinutes;
+        }
     }
 
-    drawDate(data) {
-        const el = document.createElement(); // create element
+    drawDate(date) {
+        const el = document.createElement("div"); // create element
+        el.innerHTML = `${date.getFullYear()}`;
         document.getElementById("stactistic").appendChild(el);
     }
 
@@ -22,7 +40,6 @@ class List {
         const el = document.createElement(); // create element
         const date = document.getElementById(findDate(money.date));
         date.appendChild(el);
-        x;
     }
 
     render() {

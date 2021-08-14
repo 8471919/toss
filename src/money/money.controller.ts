@@ -39,7 +39,7 @@ class MoneyController {
     };
 
     enterMoney = async (req: Request, res: Response, next: NextFunction) => {
-        const { price, isIncome, categoryId, paymentsId, userId } = req.body;
+        const { price, isIncome, categoryId, paymentId, userId } = req.body;
 
         console.log(`price : ${price}, isIncome : ${isIncome}`);
 
@@ -47,7 +47,7 @@ class MoneyController {
             price,
             isIncome,
             categoryId,
-            paymentsId,
+            paymentId,
             userId,
         });
         console.log("success enter money");

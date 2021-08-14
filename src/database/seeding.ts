@@ -61,7 +61,7 @@ export default class createSeedData implements Seeder {
                 new Array(365 * 5).fill(0).map((el) => {
                     const price = String(getRandomArbitrary(10, 100000));
                     const categoryId = getRandomArbitrary(1, 5);
-                    const paymentsId = getRandomArbitrary(1, 4);
+                    const paymentId = getRandomArbitrary(1, 4);
                     const isIncome = getRandomArbitrary(0, 2);
                     // 2021, 08, 30, 23, 59 59
 
@@ -85,7 +85,7 @@ export default class createSeedData implements Seeder {
                         price,
                         isIncome,
                         categoryId,
-                        paymentsId,
+                        paymentId,
                         userId: 1,
                         date: mysqlDate,
                     };
