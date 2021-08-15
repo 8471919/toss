@@ -23,14 +23,14 @@
     </head>
     <body>
         <header>
-            <div style="display: flex">
+            <nav style="display: flex">
                 <div style="width: 15%; text-align: center">
                     <a href="/">Toss</a>
                 </div>
                 <div style="display: flex; width: 65%">
-                    <div class="inSelector">Calender</div>
-                    <div class="inSelector">List</div>
-                    <div class="inSelector">Graph</div>
+                    <div class="inSelector" id="calanderSelector">Calender</div>
+                    <div class="inSelector" id="listSelector">List</div>
+                    <div class="inSelector" id="graphSelector">Graph</div>
                 </div>
                 <div
                     id="userState"
@@ -38,7 +38,7 @@
                 >
                     <button id="loginToggle"></button>
                 </div>
-            </div>
+            </nav>
             <div id="modalBackground"></div>
 
             <section>
