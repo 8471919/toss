@@ -1,0 +1,15 @@
+.monthSelector {
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.monthSelector button {
+    all: unset;
+}
+
+#month {
+    margin-left: 10%;
+    margin-right: 10%;
+}

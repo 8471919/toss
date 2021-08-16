@@ -3,8 +3,29 @@ main {
     height: 70vh;
 }
 
-#statistics {
+#list {
     height: 100%;
+
     background-color: pink;
-    z-index: -11;
+    opacity: 0;
+}
+
+#listView {
+    height: 85%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.listElement {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: calc(97% / 3);
+}
+
+#calender {
+    opacity: 0;
+}
+
+#graph {
+    opacity: 0;
 }

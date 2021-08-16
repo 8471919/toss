@@ -7,4 +7,10 @@ header {
 .inSelector {
     width: 33%;
     text-align: center;
+    list-style: none;
+}
+
+.inSelector a,
+#titleLogo a {
+    text-decoration: none;
 }

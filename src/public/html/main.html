@@ -16,22 +16,37 @@
             type="text/css"
             href="stylesheets/main/main.css"
         />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="stylesheets/main/common.css"
+        />
         <title>Toss!</title>
         <script src="./javascripts/main/header.js"></script>
         <script src="./javascripts/index.js"></script>
         <script src="./javascripts/main/list.js"></script>
+        <script
+            src="https://kit.fontawesome.com/b4bc2469fc.js"
+            crossorigin="anonymous"
+        ></script>
     </head>
     <body>
         <header>
             <nav style="display: flex">
-                <div style="width: 15%; text-align: center">
+                <div id="titleLogo" style="width: 15%; text-align: center">
                     <a href="/">Toss</a>
                 </div>
-                <div style="display: flex; width: 65%">
-                    <div class="inSelector" id="calanderSelector">Calender</div>
-                    <div class="inSelector" id="listSelector">List</div>
-                    <div class="inSelector" id="graphSelector">Graph</div>
-                </div>
+                <ul style="display: flex; width: 65%">
+                    <li class="inSelector">
+                        <a href="#none" id="calanderSelector">Calender</a>
+                    </li>
+                    <li class="inSelector">
+                        <a href="#none" id="listSelector">List</a>
+                    </li>
+                    <li class="inSelector">
+                        <a href="#none" id="graphSelector">Graph</a>
+                    </li>
+                </ul>
                 <div
                     id="userState"
                     style="display: flex; width: 20%; text-align: center"
@@ -65,7 +80,18 @@
         </header>
 
         <main>
-            <section id="list"></section>
+            <section id="list">
+                <div class="monthSelector">
+                    <button><i class="fas fa-arrow-left fa-2x"></i></button>
+                    <div id="month"></div>
+                    <button><i class="fas fa-arrow-right fa-2x"></i></button>
+                </div>
+                <div id="listView">
+                    <div class="listElement" id="listToTen"></div>
+                    <div class="listElement" id="listToTwenty"></div>
+                    <div class="listElement" id="listToEnd"></div>
+                </div>
+            </section>
             <section id="calender"></section>
             <section id="graph"></section>
         </main>
