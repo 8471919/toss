@@ -44,27 +44,6 @@ class Header {
                 changeZIndexAndOpacity(modalBackground, -10, 0);
                 changeZIndexAndOpacity(modalOuter, -5, 0);
             };
-
-            // window.onclick = (event) => {
-            //     if (event.target === this.loginToggleButton) {
-            //         return;
-            //     }
-
-            //     const cur = document.getElementById("modalOuter");
-            //     // cur에 대한 체크도 해주어야 한다.
-            //     if (event.target === cur) {
-            //         return;
-            //     }
-            //     for (const child of getChildNodes(cur)) {
-            //         if (event.target === child) {
-            //             return;
-            //         }
-            //     }
-
-            //     modalBackground.style.zIndex = -10;
-            //     modalBackground.style.backgroundColor = "transparent";
-            //     modalBackground.style.opacity = "0";
-            // };
         };
     }
 

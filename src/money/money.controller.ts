@@ -21,14 +21,13 @@ class MoneyController {
             const money = await this.service.getMoney(userId);
 
             const resData: any = new Array(12).fill(0).map((el) => (el = []));
-            console.log(resData);
             money.forEach((el) => {
                 const date = new Date(el.date);
                 const month = date.getUTCMonth();
                 resData[month].push(el);
             });
 
-            return res.status(200).send(resData);
+            return res.status(200).json(resData);
         }
         res.status(400).send("로그인을 해주세요");
 
