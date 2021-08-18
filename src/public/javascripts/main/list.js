@@ -17,11 +17,11 @@ class List {
             //리스트를 띄운다.
             changeZIndexAndOpacity(this.list, 1, 1);
 
-            //달에 대한 수입,지출 내역을 갖고온다.
-            await this.standardDate.updateData(this.date.getMonth());
+            // //달에 대한 수입,지출 내역을 갖고온다.
+            // await this.standardDate.updateData(this.date.getMonth());
 
-            //화살표를 누를 때마다 월이 바뀐다.
-            await this.standardDate.addFunctionToArrow();
+            // //화살표를 누를 때마다 월이 바뀐다.
+            // await this.standardDate.addFunctionToArrow();
         });
     }
 

@@ -9,7 +9,14 @@ class StandardDate {
         this.moneyData = [];
         this.monthData = [];
 
-        this.getMoneyData();
+        this.render();
+        // this.getMoneyData();
+    }
+
+    async render() {
+        await this.updateData(this.standard.getMonth());
+        await this.addFunctionToArrow();
+        await this.getMoneyData();
     }
 
     async addFunctionToArrow() {
