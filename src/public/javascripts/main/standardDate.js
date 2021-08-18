@@ -18,7 +18,6 @@ class StandardDate {
         this.monthDiv.innerHTML = `${this.standard.getFullYear()}년 ${
             this.standard.getMonth() + NEXT
         }월`;
-        console.log(this.monthData);
     }
 
     setMonthByDifference(difference) {
@@ -31,7 +30,7 @@ class StandardDate {
         element.onclick = async () => {
             this.setMonthByDifference(direct);
             this.monthDiv.innerHTML = `${this.standard.getFullYear()}년 ${
-                this.standard.getMonth() + direct
+                this.standard.getMonth() + NEXT
             }월`;
             this.updateData(this.standard.getMonth());
         };

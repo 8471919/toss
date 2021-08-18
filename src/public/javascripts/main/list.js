@@ -12,8 +12,6 @@ class List {
     }
 
     async render() {
-        //money data를 담을 변수
-
         //List를 클릭하면 월별 리스트가 나온다.
         this.listBtn.addEventListener("click", async () => {
             //리스트를 띄운다.
