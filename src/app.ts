@@ -15,6 +15,8 @@ import jwtPassportConfig from "./passport/jwt";
 import path from "path";
 import { Moneys } from "./money/entities/Moneys";
 
+import cors from "cors";
+
 const app: Application = express();
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -22,6 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use(passport.initialize());
 passportConfig();

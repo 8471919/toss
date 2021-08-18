@@ -9,7 +9,14 @@
     all: unset;
 }
 
+.monthSelector button:hover {
+    font-size: 30px;
+    color: red;
+}
+
 #month {
     margin-left: 10%;
     margin-right: 10%;
+
+    font-size: 2em;
 }

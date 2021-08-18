@@ -22,9 +22,11 @@
             href="stylesheets/main/common.css"
         />
         <title>Toss!</title>
+        <script src="javascripts/main/common.js"></script>
         <script src="./javascripts/main/header.js"></script>
         <script src="./javascripts/index.js"></script>
         <script src="./javascripts/main/list.js"></script>
+        <script src="javascripts/main/standardDate.js"></script>
         <script
             src="https://kit.fontawesome.com/b4bc2469fc.js"
             crossorigin="anonymous"
@@ -82,9 +84,13 @@
         <main>
             <section id="list">
                 <div class="monthSelector">
-                    <button><i class="fas fa-arrow-left fa-2x"></i></button>
+                    <button id="decreaseMonth">
+                        <i class="fas fa-arrow-left fa-2x"></i>
+                    </button>
                     <div id="month"></div>
-                    <button><i class="fas fa-arrow-right fa-2x"></i></button>
+                    <button id="increaseMonth">
+                        <i class="fas fa-arrow-right fa-2x"></i>
+                    </button>
                 </div>
                 <div id="listView">
                     <div class="listElement" id="listToTen"></div>

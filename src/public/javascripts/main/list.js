@@ -1,59 +1,30 @@
 class List {
-    constructor() {
-        this.leftArrow = document.getElementById("decreaseMonth");
-        this.rightArrow = document.getElementById("increaseMonth");
+    constructor(standardDate) {
+        this.standardDate = standardDate;
+        this.date = standardDate.standard;
+
         this.list = document.getElementById("list");
         this.listBtn = document.getElementById("listSelector");
-        this.monthDiv = document.getElementById("month");
 
-        this.standardDate = new Date(2021, 0);
-        this.moneyData = [];
+        this.monthData;
 
         this.render();
     }
 
-    setMonthByDifference(difference) {
-        const year = this.standardDate.getFullYear();
-        const month = this.standardDate.getMonth();
-        this.standardDate = new Date(year, month + difference);
-    }
-
     async render() {
         //money data를 담을 변수
-        this.moneyData = await this.getMoneyData();
-
-        //달을 바꾸는 화살표를 3번 누를 때 마다 fetch로 정보를 갱신한다.
-        this.updateCycle = 3;
 
         //List를 클릭하면 월별 리스트가 나온다.
-        this.listBtn.addEventListener("click", (e) => {
+        this.listBtn.addEventListener("click", async () => {
+            //리스트를 띄운다.
             changeZIndexAndOpacity(this.list, 1, 1);
-            this.monthDiv.innerHTML = `${this.standardDate.getMonth() + 1}월`;
 
-            this.leftArrow.onclick = () => {
-                this.setMonthByDifference(-1);
-                this.monthDiv.innerHTML = `${
-                    this.standardDate.getMonth() + 1
-                }월`;
-            };
+            //달에 대한 수입,지출 내역을 갖고온다.
+            await this.standardDate.updateData(this.date.getMonth());
 
-            this.rightArrow.onclick = () => {
-                this.setMonthByDifference(1);
-                this.monthDiv.innerHTML = `${
-                    this.standardDate.getMonth() + 1
-                }월`;
-            };
+            //화살표를 누를 때마다 월이 바뀐다.
+            await this.standardDate.addFunctionToArrow();
         });
-    }
-
-    async getMoneyData() {
-        const resData = await fetch(`/money/list`, {
-            headers: { "Content-Type": "application/json" },
-            method: "GET",
-        });
-
-        const result = await resData.json();
-        return result;
     }
 
     // drawDate(date) {
