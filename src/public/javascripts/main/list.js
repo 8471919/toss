@@ -8,6 +8,9 @@ class List {
         this.monthDiv = document.getElementById("month");
         this.list = document.getElementById("list");
         this.listBtn = document.getElementById("listSelector");
+        this.toTenData = document.getElementById("listToTen");
+        this.toTwentyData = document.getElementById("listToTwenty");
+        this.toEndData = document.getElementById("listToEnd");
 
         this.monthData;
 
@@ -26,16 +29,52 @@ class List {
         });
     }
 
-    // drawDate() {
-    //     const curData = this.standardDate.getMonthData();
-    //     curData.
-    // }
+    drawDate() {
+        const curData = this.standardDate.getMonthData();
 
-    // drawMoney(money) {
-    //     const el = document.createElement(); // create element
-    //     const date = document.getElementById(findDate(money.date));
-    //     date.appendChild(el);
-    // }
+        for (const data of curData) {
+            //getDate로 하면 낮12시를 기점으로 값이 바뀐다.
+            const allDate = new Date(data.date);
+            const date = allDate.getUTCDate();
+            const hours = allDate.getUTCHours();
+            const minutes = allDate.getUTCMinutes();
+            const time = `${date}일 ${hours}시 ${minutes}분`;
+
+            if (date <= 10) {
+                this.toTenData.appendChild(this.drawMoney(time, data));
+            } else if (date <= 20) {
+                this.toTwentyData.appendChild(this.drawMoney(time, data));
+            } else {
+                this.toEndData.appendChild(this.drawMoney(time, data));
+            }
+        }
+    }
+
+    deleteDate() {
+        while (this.toTenData.hasChildNodes()) {
+            this.toTenData.removeChild(this.toTenData.firstChild);
+        }
+        while (this.toTwentyData.hasChildNodes()) {
+            this.toTwentyData.removeChild(this.toTwentyData.firstChild);
+        }
+        while (this.toEndData.hasChildNodes()) {
+            this.toEndData.removeChild(this.toEndData.firstChild);
+        }
+    }
+
+    drawMoney(time, money) {
+        const nowDiv = createEl("div", false, "dayInfo");
+        let isIncome = "-";
+        if (money.isIncome) {
+            isIncome = "+";
+        }
+
+        nowDiv.innerHTML = `<div class="dateInDayInfo">${time}</div>
+                            <div class="priceInDayInfo">${isIncome}${money.price}원 </div>
+                            <div class="ectInDayInfo">${money.categoryName} &emsp; ${money.paymentName} </div>`;
+
+        return nowDiv;
+    }
 
     // render() {
     //     const date = this.incomes
@@ -55,6 +94,7 @@ class List {
         this.monthDiv.innerHTML = `${this.date.getFullYear()}년 ${
             this.date.getMonth() + NEXT
         }월`;
+        this.drawDate();
     }
 
     setMonthByDifference(difference) {
@@ -69,7 +109,9 @@ class List {
             this.monthDiv.innerHTML = `${this.date.getFullYear()}년 ${
                 this.date.getMonth() + NEXT
             }월`;
-            this.standardDate.updateData(this.date.getMonth());
+            this.deleteDate();
+            await this.standardDate.updateData(this.date.getMonth());
+            this.drawDate();
         };
     }
 }

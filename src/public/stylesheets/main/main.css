@@ -29,3 +29,7 @@ main {
 #graph {
     opacity: 0;
 }
+
+.dayInfo {
+    border: 1px solid black;
+}
