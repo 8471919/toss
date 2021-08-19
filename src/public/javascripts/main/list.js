@@ -3,6 +3,9 @@ class List {
         this.standardDate = standardDate;
         this.date = standardDate.standard;
 
+        this.leftArrow = document.getElementById("decreaseMonth");
+        this.rightArrow = document.getElementById("increaseMonth");
+        this.monthDiv = document.getElementById("month");
         this.list = document.getElementById("list");
         this.listBtn = document.getElementById("listSelector");
 
@@ -17,18 +20,15 @@ class List {
             //리스트를 띄운다.
             changeZIndexAndOpacity(this.list, 1, 1);
 
-            // //달에 대한 수입,지출 내역을 갖고온다.
-            // await this.standardDate.updateData(this.date.getMonth());
+            this.standardDate.updateData(this.date.getMonth());
 
-            // //화살표를 누를 때마다 월이 바뀐다.
-            // await this.standardDate.addFunctionToArrow();
+            this.addFunctionToArrow();
         });
     }
 
-    // drawDate(date) {
-    //     const el = document.createElement("div"); // create element
-    //     el.innerHTML = `${date.getFullYear()}`;
-    //     document.getElementById("stactistic").appendChild(el);
+    // drawDate() {
+    //     const curData = this.standardDate.getMonthData();
+    //     curData.
     // }
 
     // drawMoney(money) {
@@ -48,4 +48,28 @@ class List {
     //     this.incomes.forEach((income) => this.drawMoney(income));
     //     this.outgoings.forEach((outgoing) => this.drawMoney(outgoing));
     // }
+
+    async addFunctionToArrow() {
+        this.changeMonth(this.leftArrow, PREV);
+        this.changeMonth(this.rightArrow, NEXT);
+        this.monthDiv.innerHTML = `${this.date.getFullYear()}년 ${
+            this.date.getMonth() + NEXT
+        }월`;
+    }
+
+    setMonthByDifference(difference) {
+        const year = this.date.getFullYear();
+        const month = this.date.getMonth();
+        this.date = new Date(year, month + difference);
+    }
+
+    async changeMonth(element, direct = NEXT) {
+        element.onclick = async () => {
+            this.setMonthByDifference(direct);
+            this.monthDiv.innerHTML = `${this.date.getFullYear()}년 ${
+                this.date.getMonth() + NEXT
+            }월`;
+            this.standardDate.updateData(this.date.getMonth());
+        };
+    }
 }

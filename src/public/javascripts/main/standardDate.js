@@ -1,46 +1,11 @@
 class StandardDate {
     constructor() {
-        this.leftArrow = document.getElementById("decreaseMonth");
-        this.rightArrow = document.getElementById("increaseMonth");
-        this.monthDiv = document.getElementById("month");
-
         this.standard = new Date();
         this.updateCycle = UPDATE_CYCLE;
         this.moneyData = [];
         this.monthData = [];
 
-        this.render();
-        // this.getMoneyData();
-    }
-
-    async render() {
-        await this.updateData(this.standard.getMonth());
-        await this.addFunctionToArrow();
-        await this.getMoneyData();
-    }
-
-    async addFunctionToArrow() {
-        this.changeMonth(this.leftArrow, PREV);
-        this.changeMonth(this.rightArrow, NEXT);
-        this.monthDiv.innerHTML = `${this.standard.getFullYear()}년 ${
-            this.standard.getMonth() + NEXT
-        }월`;
-    }
-
-    setMonthByDifference(difference) {
-        const year = this.standard.getFullYear();
-        const month = this.standard.getMonth();
-        this.standard = new Date(year, month + difference);
-    }
-
-    async changeMonth(element, direct = NEXT) {
-        element.onclick = async () => {
-            this.setMonthByDifference(direct);
-            this.monthDiv.innerHTML = `${this.standard.getFullYear()}년 ${
-                this.standard.getMonth() + NEXT
-            }월`;
-            this.updateData(this.standard.getMonth());
-        };
+        this.getMoneyData();
     }
 
     //오래된 data를 fetch를 다시 한번 해줌으로서 새로 갱신해준다.
@@ -65,5 +30,9 @@ class StandardDate {
         const result = await resData.json();
         this.moneyData = result;
         return result;
+    }
+
+    getMonthData() {
+        return this.monthData;
     }
 }
