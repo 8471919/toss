@@ -11,8 +11,28 @@
 class Header {
     constructor() {
         this.loginToggleButton = document.getElementById("loginToggle");
+        this.loginBtn = document.getElementById("loginBtn");
+
+        document.getElementsByName("id")[0].value = `1234`;
+        document.getElementsByName("password")[0].value = `123`;
 
         this.setToggleStatus();
+        this.loginFetch();
+    }
+
+    getCookie() {
+        // google=3; naver=5; auth=tokenValue;
+        const cookie = document.cookie.split("; ").map((el) => {
+            const [key, token] = el.split("=");
+            return { key, token };
+        });
+
+        const [authCookie] = cookie.filter((el) => el.key === "auth");
+
+        if (authCookie && authCookie.token === "null") {
+            return false;
+        }
+        return cookie;
     }
 
     async setToggleStatus() {
@@ -47,18 +67,22 @@ class Header {
         };
     }
 
-    getCookie() {
-        // google=3; naver=5; auth=tokenValue;
-        const cookie = document.cookie.split("; ").map((el) => {
-            const [key, token] = el.split("=");
-            return { key, token };
+    async loginFetch() {
+        this.loginBtn.addEventListener("click", async () => {
+            const email = document.getElementsByName("id")[0].value;
+            const password = document.getElementsByName("password")[0].value;
+            const data = { email, password };
+
+            const resData = await fetch("/user/login", {
+                headers: { "Content-Type": "application/json" },
+                method: "POST",
+                body: JSON.stringify(data),
+            });
+
+            const { token } = await resData.json();
+            document.cookie = `auth=${token}`;
+
+            window.location.reload();
         });
-
-        const [authCookie] = cookie.filter((el) => el.key === "auth");
-
-        if (authCookie && authCookie.token === "null") {
-            return false;
-        }
-        return true;
     }
 }

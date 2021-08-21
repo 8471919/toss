@@ -47,7 +47,8 @@ class UserController {
             const userId = user.id;
             // const curTime = Date.now();
             const token = jwt.sign({ email, userId }, "secret");
-            res.status(200).send(token);
+            res.status(200).send({ token });
+            return;
         }
         res.send(400);
     };

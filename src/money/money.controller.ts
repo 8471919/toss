@@ -13,8 +13,6 @@ class MoneyController {
     };
 
     importMoney = async (req: Request, res: Response, next: NextFunction) => {
-        req.user = { id: 1 };
-
         if (req.user) {
             const user: any = await req.user;
             const userId = user.id;

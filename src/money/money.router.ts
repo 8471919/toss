@@ -12,7 +12,11 @@ moneyRouter.get(
     moneyController.importMoney
 );
 
-moneyRouter.get("/list", moneyController.importMoney);
+moneyRouter.get(
+    "/list",
+    passport.authenticate("jwt", { session: false }),
+    moneyController.importMoney
+);
 
 moneyRouter.post("/", moneyController.enterMoney);
 moneyRouter.get(

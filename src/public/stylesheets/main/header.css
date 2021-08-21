@@ -4,6 +4,13 @@ body {
 header {
     height: 5vh;
 }
+#titleBar {
+    display: flex;
+}
+
+#titleLogo {
+}
+
 .inSelector {
     width: 33%;
     text-align: center;
