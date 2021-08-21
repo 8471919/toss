@@ -44,28 +44,30 @@
     </head>
     <body>
         <header>
-            <nav style="display: flex">
+            <div style="display: flex">
                 <div id="titleLogo" style="width: 15%; text-align: center">
                     <a href="/">Toss</a>
                 </div>
-                <ul style="display: flex; width: 65%">
-                    <li class="inSelector">
-                        <a href="#none" id="calanderSelector">Calender</a>
-                    </li>
-                    <li class="inSelector">
-                        <a href="#none" id="listSelector">List</a>
-                    </li>
-                    <li class="inSelector">
-                        <a href="#none" id="graphSelector">Graph</a>
-                    </li>
-                </ul>
+                <nav style="width: 65%">
+                    <ul style="display: flex">
+                        <li class="inSelector">
+                            <a href="#none" id="calanderSelector">Calender</a>
+                        </li>
+                        <li class="inSelector">
+                            <a href="#none" id="listSelector">List</a>
+                        </li>
+                        <li class="inSelector">
+                            <a href="#none" id="graphSelector">Graph</a>
+                        </li>
+                    </ul>
+                </nav>
                 <div
                     id="userState"
                     style="display: flex; width: 20%; text-align: center"
                 >
                     <button id="loginToggle"></button>
                 </div>
-            </nav>
+            </div>
 
             <div id="modalBackground"></div>
             <section>
