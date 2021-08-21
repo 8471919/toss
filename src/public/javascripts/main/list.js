@@ -12,8 +12,6 @@ class List {
         this.toTwentyData = document.getElementById("listToTwenty");
         this.toEndData = document.getElementById("listToEnd");
 
-        this.monthData;
-
         this.render();
     }
 
@@ -26,6 +24,7 @@ class List {
             this.standardDate.updateData(this.date.getMonth());
 
             this.addFunctionToArrow();
+            this.roll();
         });
     }
 
@@ -69,10 +68,11 @@ class List {
             isIncome = "+";
         }
 
-        nowDiv.innerHTML = `<div class="dateInDayInfo">${time}</div>
-                            <div class="priceInDayInfo">${isIncome}${money.price}원 </div>
-                            <div class="ectInDayInfo">${money.categoryName} &emsp; ${money.paymentName} </div>`;
+        let color = isIncome === "+" ? "blue" : "red";
 
+        nowDiv.innerHTML = `<div class="dateInDayInfo">${time}</div>
+                            <div class="priceInDayInfo" style="color:${color}">${isIncome}${money.price}원 </div>
+                            <div class="ectInDayInfo">${money.categoryName} &emsp; ${money.paymentName} </div>`;
         return nowDiv;
     }
 
