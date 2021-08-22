@@ -29,7 +29,9 @@ class List {
 
     drawDate() {
         const curData = this.standardDate.getMonthData();
-
+        if (typeof curData === "undefined") {
+            return false;
+        }
         for (const data of curData) {
             //getDate로 하면 낮12시를 기점으로 값이 바뀐다.
             const allDate = new Date(data.date);
