@@ -24,7 +24,6 @@ class List {
             this.standardDate.updateData(this.date.getMonth());
 
             this.addFunctionToArrow();
-            this.roll();
         });
     }
 
