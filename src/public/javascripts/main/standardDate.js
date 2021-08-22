@@ -37,10 +37,15 @@ class StandardDate {
     }
 
     async getMoneyData() {
+        //cookie가 없으면 data를 가져오지 않는다.
+        if (!this.getCookie()) {
+            return false;
+        }
         const [auth] = this.getCookie().filter((el) => {
             return el.key === "auth";
         });
 
+        console.log(auth);
         const { key, token } = auth;
 
         const resData = await fetch(`/money/list`, {

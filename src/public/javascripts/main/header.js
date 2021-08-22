@@ -53,7 +53,7 @@ class Header {
         this.loginToggleButton.onclick = () => {
             //이벤트를 테스트하기 위해 쿠키를 준다.
             //원래 있던 naver=3 과같은 쿠키 뒤에 붙는다.
-            document.cookie = "auth=3";
+            // document.cookie = "auth=3";
             const modalBackground = document.getElementById("modalBackground");
             changeZIndexAndOpacity(modalBackground, 5, 0.7);
 
